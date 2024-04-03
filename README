@@ -1,0 +1,10 @@
+to enter on the shell execute
+docker run -it -v ./data:/data dmarctools shell
+
+to check spf and dmarc for a domain execute
+
+docker run -v ./data:/data dmarctools checkdmarc prueba.com
+
+to parse a dmarc report excute
+
+docker run -v ./data:/data dmarctools parsedmarc -c /data/parsedmarc.ini --debug /data/dm_82F7wW4Vom.xml
