@@ -34,8 +34,14 @@ RUN ln -s /srv/parsedmarc/config/GeoLite2-Country.mmdb /usr/share/GeoIP/GeoLite2
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
+# Copy health check server script
+COPY health_check_server.py /usr/local/bin/health_check_server.py
+
 # Set permissions for entrypoint script
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/health_check_server.py
+
+# Expose the port for the health check server
+EXPOSE 8080
 
 # Set the entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
