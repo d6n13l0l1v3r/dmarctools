@@ -21,7 +21,7 @@ case "$1" in
     exec sh
     ;;
   *)
-    echo "Usage: $0 {parsedmarc|checkdmarc|shell} additional_arguments"
+    echo "Usage: $0 {parsedmarc|checkdmarc|shell}"
     exit 1
     ;;
 esac
