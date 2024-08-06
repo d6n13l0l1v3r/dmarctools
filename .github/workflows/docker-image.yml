@@ -10,7 +10,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: d6n13l0l1v3r/dmarctool
+  IMAGE_NAME: d6n13l0l1v3r/dmarctools
   # Default tag
   DEFAULT_TAG: latest
   # Build number
