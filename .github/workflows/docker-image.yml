@@ -61,7 +61,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Push Docker image
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         uses: docker/build-push-action@v5
         with:
           context: .

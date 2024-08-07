@@ -12,3 +12,4 @@ docker run --rm -v ./data:/data d6n13l0l1v3r/dmarctools parsedmarc -c /data/pars
 docker run --rm -v ./data:/data d6n13l0l1v3r/dmarctools parsedmarc -c /data/parsedmarc.ini --debug --verbose
 
 #DummyStuff PR
+#DummyStuff branch
