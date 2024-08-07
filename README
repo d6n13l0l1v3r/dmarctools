@@ -10,3 +10,5 @@ to parse a dmarc report excute
 docker run --rm -v ./data:/data d6n13l0l1v3r/dmarctools parsedmarc -c /data/parsedmarc.ini --debug /data/dm_82F7wW4Vom.xml
 
 docker run --rm -v ./data:/data d6n13l0l1v3r/dmarctools parsedmarc -c /data/parsedmarc.ini --debug --verbose
+
+#DummyStuff PR
