@@ -29,6 +29,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Git
+        run: |
+          git fetch --all
+
+      - name: Calculate version
+        id: calculate_version
+        run: |
+          GIT_REVNUM=$(git rev-list HEAD --count)
+          major=$(date -u +%y%j)
+          VERSION_TAG="${major}.${GIT_REVNUM}.${{ env.BUILD_NUMBER }}"
+          echo "VERSION_TAG=${VERSION_TAG}" >> $GITHUB_ENV
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -69,7 +81,7 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}-${{ env.BUILD_NUMBER }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
