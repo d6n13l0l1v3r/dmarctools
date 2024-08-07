@@ -2,6 +2,7 @@ name: DockerHub
 
 on:
   push:
+    #I don't sure if is better to use only ["master"] instance ["*"]
     branches: ["*"]
   pull_request:
     branches: ["*"]
@@ -15,7 +16,6 @@ env:
   DEFAULT_TAG: latest
   # Build number
   BUILD_NUMBER: ${{ github.run_number }}
-  VERSION: v1.0.0
 
 jobs:
   build:
@@ -37,14 +37,14 @@ jobs:
           FIX_REVNUM=$(git rev-list origin/master..HEAD --count)
           major=$(date -u +%y%j)
           VERSION_TAG="${major}.${GIT_REVNUM:-0}.${FIX_REVNUM:-0}-build${{ env.BUILD_NUMBER }}"
-          echo "VERSION_TAG=${VERSION_TAG}" >> $GITHUB_ENV
+          echo "VERSION_TAG=${VERSION_TAG}"
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -52,7 +52,7 @@ jobs:
 
       - name: Extract Docker metadata
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
