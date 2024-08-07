@@ -36,8 +36,7 @@ jobs:
           GIT_REVNUM=$(git rev-list HEAD --count)
           FIX_REVNUM=$(git rev-list origin/master..HEAD --count)
           major=$(date -u +%y%j)
-          VERSION_TAG="${major}.${GIT_REVNUM:-0}.${FIX_REVNUM:-0}-build${{ env.BUILD_NUMBER }}"
-          echo "VERSION_TAG=${VERSION_TAG}"
+          VERSION_TAG="${major}.${GIT_REVNUM:-0}.${FIX_REVNUM:-0}-${{ env.BUILD_NUMBER }}"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
