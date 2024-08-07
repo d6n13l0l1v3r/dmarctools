@@ -7,13 +7,9 @@ on:
     branches: ["*"]
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: d6n13l0l1v3r/dmarctools
-  # Default tag
   DEFAULT_TAG: latest
-  # Build number
   BUILD_NUMBER: ${{ github.run_number }}
 
 jobs:
@@ -28,17 +24,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Git
-        run: |
-          git fetch --all
-
       - name: Calculate version
         id: calculate_version
         run: |
+          git fetch --all
           GIT_REVNUM=$(git rev-list HEAD --count)
-          FIX_REVNUM=$(git rev-list origin/master..HEAD|wc -l| tr -d ' ')
+          FIX_REVNUM=$(git rev-list origin/master..HEAD --count)
           major=$(date -u +%y%j)
           VERSION_TAG="${major}.${GIT_REVNUM:-0}.${FIX_REVNUM:-0}-build${{ env.BUILD_NUMBER }}"
+          echo "VERSION_TAG=${VERSION_TAG}" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -64,7 +58,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: false  # Do not push yet
+          push: false
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
