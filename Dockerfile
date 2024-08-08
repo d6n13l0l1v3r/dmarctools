@@ -26,8 +26,8 @@ RUN mkdir -p /usr/share/GeoIP/
 COPY config/GeoLite2-Country.mmdb /srv/parsedmarc/config/
 COPY config/parsedmarc.sample.ini /srv/parsedmarc/config/
 
-COPY config/KibanaDashboard.ndjson /data/
-COPY config/KibanaDashboard-v2.ndjson /data/
+COPY config/kibanaDashboard.ndjson /data/
+COPY config/kibanaDashboard-v2.ndjson /data/
 COPY README /data/
 
 # Create symbolic link
