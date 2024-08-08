@@ -1,5 +1,5 @@
 to enter on the shell execute
-docker run --rm -it -v ./data:/data dmarctools shell
+docker run --rm -it -v ./data:/data d6n13l0l1v3r/dmarctools shell
 
 to check spf and dmarc for a domain execute
 

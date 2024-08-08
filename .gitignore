@@ -1,19 +1,14 @@
-# Ignore all files in the data/output_files/ directory
-data/
+# Ignore docker-compose.yml, but track other compose files (e.g., docker-compose.override.yml)
+docker-compose.yml
 
 # Ignore all .ini files, except for example.ini (if you have an example or template file)
 *.ini
-!data/parsedmarc.ini
-!config/parsedmarc.sample.ini
 
 # Ignore all log files
 *.log
 
-# Ignore docker-compose.yml, but track other compose files (e.g., docker-compose.override.yml)
-docker-compose.yml
-
 # Ignore .dockerignore file
-#.dockerignore
+.dockerignore
 
 # Ignore any additional system-specific or temporary files
 # macOS
