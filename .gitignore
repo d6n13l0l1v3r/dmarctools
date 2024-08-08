@@ -1,3 +1,52 @@
-data/output_files/
+# Ignore all files in the data/output_files/ directory
+data/
+
+# Ignore all .ini files, except for example.ini (if you have an example or template file)
 *.ini
+!data/parsedmarc.ini
+!config/parsedmarc.sample.ini
+
+# Ignore all log files
 *.log
+
+# Ignore docker-compose.yml, but track other compose files (e.g., docker-compose.override.yml)
+docker-compose.yml
+
+# Ignore .dockerignore file
+#.dockerignore
+
+# Ignore any additional system-specific or temporary files
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# Node.js dependencies
+node_modules/
+
+# Python virtual environment
+venv/
+__pycache__/
+
+# Ignore IDE and editor directories and files
+.vscode/
+.idea/
+*.swp
+
+# Ignore any other common temporary or build files
+*.tmp
+*.bak
+*.old
+*.orig
+*.lock
+*.cache
+*.dist
+
+# Comment explaining why certain files are ignored
+# Exclude configuration files that contain sensitive information
+# Ensure temporary and build files are not tracked
